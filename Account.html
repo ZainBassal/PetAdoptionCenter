@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    <link rel="stylesheet" href="styles8.css">
+    <script>
+        function validateForm(){
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    console.log("Testing password:", password);
+    const userRegulations = /^[a-zA-Z0-9]+$/;
+    const passRegulations = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
+    console.log("Regex test result:", passRegulations.test(password));
+
+    if(!userRegulations.test(username)){
+        alert("Username must be alphanumeric.");
+        return false;
+    }
+    if(!passRegulations.test(password)){
+        alert("Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number.");
+        return false;
+    }
+    return true;
+}
+    </script>
+</head>
+<body>
+    <div class="allheros">
+        <section class="hero">
+    <h2>Account Creation</h2>
+    <form method="POST" action="/createAccount" onsubmit="return validateForm();">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Create Account</button>
+    </form>
+    </section>
+    </div>
+</body>
+</html>
